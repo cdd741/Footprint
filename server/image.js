@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const imageSchema = new mongoose.Schema({
-  username: String,
+  email: String,
   location: String,
   imgUrl: String,
   imgId: String,
+  likes: Number,
 });
 
-module.exports = mongoose.model("image", imageSchema);
+module.exports = mongoose.model("Image", imageSchema);
