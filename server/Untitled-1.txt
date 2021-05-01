@@ -1,28 +1,26 @@
 ***** post (image) *****
-get /post/:id
-// upload 
-post /post
-delete /post/:id
-put /post/:id 最后在写
+get /post/:id               finished   
+post /post                  finished        
+delete /post/:id            finished    
+put /post/:id               最后在写
 
 
 ***** user ***** 
 get /user/:id
-post /user/signup
-post /user/signin
-put /user/:id
+post /user/signup           finished     
+post /user/signin           finished     
+put /user/:id               最后在写
 
 
 ***** search ***** 
 get /search => {
                 locations: [location, location, location, location], 
                 users: [user, user, user, user]
-                }
+                }           Todo
 // limited information
 
 
 ***** location ***** 
-// database filter location id
-get /location/:id
+get /location/:city         finished  
 
 

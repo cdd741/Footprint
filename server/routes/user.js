@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+
 //controllers from inventories
-const { getUserId, signup, signin, putUserId } = require("../controllers/user");
+const { getUserById, signup, signin } = require("../controllers/user.js");
 
 //routes
-router.get("/:id", getUserId);
+router.get("/:id", getUserById);
 router.post("/signup", signup);
 router.post("/signin", signin);
-router.put("/:id", putUserId);
+// router.put("/:id", putUserById);
 
 module.exports = router;
