@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Header.scss";
+import searchIcon from "../../assets/icons/search.svg";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -7,9 +8,15 @@ function Header() {
     isLoggedin: false,
     userInfo: null,
   });
+
+  const x = () => {
+    setLoggingInfo(true);
+  };
   return (
-    <header className="header">
-      <h3 className="header__logo">Footprint</h3>
+    <header className="header" onClick={x}>
+      <Link to="/">
+        <h3 className="header__logo">Footprint</h3>
+      </Link>
       <form className="header__search-container">
         <input
           className="header__search-input"
@@ -22,7 +29,7 @@ function Header() {
           type="image"
           name="submit"
           id="submit"
-          src=""
+          src={searchIcon}
           alt="search icon"
         />
       </form>
@@ -30,11 +37,11 @@ function Header() {
         {loggingInfo.isLoggedin && <div className="header__greeting">Hi</div>}
         {!loggingInfo.isLoggedin && (
           <>
-            <Link to="/signin">
-              <button>signin</button>
+            <Link to="/signin" className="header__link">
+              <button className="header__button">signin</button>
             </Link>
-            <Link to="signup">
-              <button>signup</button>
+            <Link to="signup" className="header__link">
+              <button className="header__button">signup</button>
             </Link>
           </>
         )}

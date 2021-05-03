@@ -16,7 +16,7 @@ put /user/:id               最后在写
 get /search => {
                 locations: [location, location, location, location], 
                 users: [user, user, user, user]
-                }           Todo
+                }          finished     
 // limited information
 
 

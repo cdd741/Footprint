@@ -1,41 +1,41 @@
 const multer = require("multer");
-const Image = require("./Image.js");
+const Image = require("../model/Image");
+const path = require('path')
 
-const Storage = multer.diskStorage({
-    destination: "../public/uploads/",
+const storage = multer.diskStorage({
+    destination: './Public/uploads',
     filename: (_req, file, cb) => {
         cb(null, `${Date.now()}-${path.extname(file.originalname)}`);
     },
 });
 
 const upload = multer({
-    storage: Storage,
+    storage: storage,
     limits: { fileSize: 100000000, files: 1 },
-}).single("Image");
+}).single("file");
 
-// Image upload
+// Image uploa d
 function uploadImage(req, res) {
     upload(req, res ,(err)=>{
-        if (err)
-        {
-            return res.status(500).send(err);
+        if (err) {
+            return res.status(500).send('ERROR occur during upload image', err);
         }
-        const obj = 
-        {
-            username: req.body.username,
-            location: req.body.location,
-            likes: 0,
-            imgUrl: `http://localhost:8080/uploads/${req.file.filename}`,
-            imgId: uuidv4(),
-        };
-        Image.create(obj, (err, _item) => {
-            if (err) 
-            {
-                console.log(err);
-                res.status(400).send("upload imag");
-            }
-        });
-        res.status(201).send(obj.imgId);
+       const obj = {
+         username: req.body.username,
+         location: req.body.location,
+         likes: 0,
+         imgUrl: `http://localhost:8080/uploads/${req.file.filename}`,
+         imgId: uuidv4(),
+       };
+
+       Image.create(obj, (err, _item) => {
+         if (err) {
+            console.log(err);
+           res.status(400).send("upload imag");
+         }
+       });
+
+    //   res.status(201).send(obj.imgId);
     })
 }
 
@@ -49,9 +49,9 @@ async function getImageById(req, res) {
         res.status(403).send("Cannot find this image");
         console.log("Cannot find this image");
     }
-    else{
-      // Code 302 means Found
-      res.status(302).send(image);
+    else
+    {
+      res.status(200).send(image);
     }
 }
 

@@ -6,3 +6,5 @@ const {
 } = require("../controllers/location.js");
 
 router.get(":city", getImageByLocation);
+
+module.exports = router;

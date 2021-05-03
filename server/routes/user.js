@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-
 //controllers from inventories
 const { getUserById, signup, signin } = require("../controllers/user.js");
 

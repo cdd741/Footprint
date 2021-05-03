@@ -8,6 +8,8 @@ const {
   deleteImageById,
 } = require("../controllers/post.js");
 
-router.post("/post", uploadImage);
+router.post("/", uploadImage);
 router.get("/:id", getImageById);
 router.get("/:id", deleteImageById);
+
+module.exports = router;

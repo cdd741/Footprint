@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const user = require("./routes/user");
+const post = require("./routes/post");
 
 const app = express();
 app.use(express.json());
@@ -26,6 +27,8 @@ mongoose
     console.log(err);
   });
 
+
+
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
@@ -34,7 +37,7 @@ db.once("open", function () {
 
 app.use("/user", user);
 // app.use('/location', location);
-// app.use('/post', post);
+app.use('/post', post);
 // app.use('/search', search)
 app.get('/', (req, res) => {
   res.send('123')

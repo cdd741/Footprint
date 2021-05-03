@@ -1,0 +1,42 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.header {
+  @include page-padding;
+  &__logo {
+  }
+
+  &__search-container {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__search-input {
+    border: none;
+    width: 100%;
+    outline: none;
+  }
+
+  &__search-icon {
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  &__user-info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__greeting {
+  }
+
+  &__link {
+  }
+
+  &__button {
+  }
+}
