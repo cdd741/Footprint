@@ -1,10 +1,21 @@
 const mongoose = require("mongoose");
 
 const imageSchema = new mongoose.Schema({
-  userID: {
-    type: String,
+  user: {
+    type: Object,
     required: true,
-    unique: true,
+    userId: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+  },
+  timestemp: {
+    type: Date,
+    required: true,
   },
   location: {
     type: String,
@@ -21,6 +32,36 @@ const imageSchema = new mongoose.Schema({
   },
   likes: {
     type: Number,
+  },
+  comments: {
+    type: Array,
+    comment: {
+      type: Object,
+      commentId: {
+        type: Number,
+        unique: true,
+        required: true,
+      },
+      user: {
+        type: Object,
+        userId: {
+          type: String,
+          required: true,
+        },
+        username: {
+          type: String,
+          required: true,
+        },
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+      timestemp: {
+        type: Number,
+        required: true,
+      },
+    },
   },
 });
 

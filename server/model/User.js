@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  description: {
+  bio: {
     type: String,
   },
 });

@@ -31,9 +31,18 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route>
-              <Upload path="/upload" />
-            </Route>
+            <Route
+              path="/upload"
+              render={(routerProps) => {
+                return <Upload {...routerProps} />;
+              }}
+            />
+            <Route
+              path="/:id"
+              render={(routerProps) => {
+                return <Home {...routerProps} />;
+              }}
+            />
             <Route></Route>
           </Switch>
         </Route>

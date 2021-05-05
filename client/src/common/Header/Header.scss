@@ -4,6 +4,19 @@
 
 .header {
   @include page-padding;
+
+  @include tablet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__logo {
   }
 
@@ -26,9 +39,24 @@
     }
   }
 
-  &__user-info {
+  &__links {
     display: flex;
     justify-content: space-between;
+    height: fit-content;
+
+    &--mobile {
+      @include tablet {
+        display: none;
+      }
+    }
+
+    &--tablet {
+      display: none;
+
+      @include tablet {
+        display: flex;
+      }
+    }
   }
 
   &__greeting {
