@@ -1,10 +1,11 @@
 const Image = require("../model/Image");
 const User = require("../model/User");
 
-function search(req, res) {
-  let locQuery = Image.find({ location: {"$regex": req.body.searchTerm, "$options": "i"}});
+async function search(req, res) {
+  
+  let locQuery = await Image.find({ location: {"$regex": req.body.searchTerm, "$options": "i"}}).sort({'likes': 1}).limit(10);
 
-  let userQuery = User.find({ username: {"$regex": req.body.searchTerm,"$options": "i"}});
+  let userQuery = await User.find({ username: {"$regex": req.body.searchTerm,"$options": "i"}}).sort({'likes': 1}).limit(10);
 
   if (!locQuery) {
     // mongoose will return null if not found this image
@@ -20,19 +21,13 @@ function search(req, res) {
   }
   else
   {
-    locQuery.limit(10);
-    userQuery.limit(10);
-
-    locQuery.sort({ likes: 1 });
-    userQuery.sort({ likes: 1 });
+    console.log(locQuery)
 
     let query = { location: locQuery, user: userQuery };
+    // console.log(query)
 
     res.status(200).send(query);
   }
-
-
-
 }
 
 module.exports = {

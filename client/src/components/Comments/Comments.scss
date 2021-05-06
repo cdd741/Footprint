@@ -1,0 +1,196 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.comments {
+  margin-top: 2.5rem;
+
+  &__title {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  &__form {
+    margin-top: 2rem;
+  }
+
+  &__list {
+    padding-left: 0;
+    margin: 0;
+  }
+
+  // Comment Form
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: $border;
+    padding-bottom: 24px;
+
+    @include tablet {
+      align-items: flex-end;
+    }
+
+    @include desktop {
+      padding-right: 2rem;
+    }
+  }
+
+  &__profile-picture {
+    width: 3rem;
+    height: 3rem;
+    background-color: $silver;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: left;
+    position: relative;
+    top: 20px;
+
+    @include tablet {
+      top: 0;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    display: flex;
+    margin-left: 1rem;
+    flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__label-text {
+    margin: 0;
+    font-weight: 500;
+    color: $silver;
+  }
+
+  &__textarea {
+    height: 6rem;
+    resize: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    vertical-align: text-top;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    color: $black;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    line-height: 1.125rem;
+    border: 2px solid $mercury;
+    transition: 0.3s;
+    background-color: $alabaster;
+
+    @include tablet {
+      height: 3rem;
+      margin: 0;
+    }
+
+    &:active,
+    &:focus {
+      border: 3px solid $button-blue;
+      outline: none;
+    }
+  }
+
+  &__button {
+    height: 3rem;
+    width: 100%;
+    max-width: 14rem;
+    align-self: flex-end;
+
+    @include tablet {
+      min-width: 160px;
+      width: 160px;
+      max-width: 160px;
+      margin: 0 2.5rem 0 16px;
+    }
+
+    @include desktop {
+      margin-right: 0;
+    }
+  }
+}
+
+// single comment component
+.comment {
+  display: flex;
+  margin-top: 1.5rem;
+  list-style-type: none;
+  border-bottom: $border;
+
+  @include desktop {
+    padding-right: 2rem;
+  }
+
+  &__item {
+    &--left {
+      border-radius: 50%;
+      background-color: $mercury;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    &--right {
+      font-size: 0.875rem;
+      margin-left: 1rem;
+      width: 86%;
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      justify-content: flex-start;
+    }
+  }
+
+  &__name {
+    margin: 0;
+    overflow-wrap: break-word;
+    font-weight: 600;
+  }
+
+  &__date {
+    margin: 0;
+    color: $silver;
+    font-weight: 400;
+
+    @include tablet {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__description {
+    overflow-wrap: break-word;
+    margin-top: 0.5rem;
+  }
+
+  &__delete-btn {
+    background-color: $white;
+    border-style: none;
+    transition: 0.3s;
+    color: $silver;
+    padding: 0;
+    margin-bottom: 8px;
+
+    &:hover {
+      background-color: $white;
+      color: #d11a2a;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

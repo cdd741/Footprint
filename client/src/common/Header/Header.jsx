@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import searchIcon from "../../assets/icons/search.svg";
 import { Link } from "react-router-dom";
 import { globalContext } from "../../context/GlobalContext";
+import axios from "axios";
+import { searchUrl } from "../../utils/apis";
 
 const loggedIn = (user) => (
   <>
@@ -30,7 +32,18 @@ const notLoggedIn = (
 
 function Header(props) {
   const { user, loggingInfo } = useContext(globalContext);
+  const [SearchTerm, setSearchTerm] = useState("");
 
+  const handleOnChange = (e) => {
+    setSearchTerm(e.target.value);
+    axios.post(searchUrl(), { searchTerm: e.target.value }).then((res) => {
+      console.log(res.data);
+    });
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <header className="header">
       <div className="header__logo-container">
@@ -48,7 +61,10 @@ function Header(props) {
           type="text"
           name="input"
           id="input"
+          value={SearchTerm}
+          onChange={handleOnChange}
         />
+
         <input
           className="header__search-icon"
           type="image"

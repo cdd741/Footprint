@@ -1,0 +1,21 @@
+@use '../../styles/partials/variables' as *;
+
+.button-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  border-style: none;
+  border-radius: 4px;
+  background-color: $button-blue;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: $button-blue-dark;
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}

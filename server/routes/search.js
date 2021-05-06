@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const {search,} = require("../controllers/search.js");
+const {search} = require("../controllers/search.js");
 
-router.get("/", search);
+router.post("/", search);
 
 module.exports = router;

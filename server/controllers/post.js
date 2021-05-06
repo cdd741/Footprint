@@ -21,7 +21,7 @@ const uploadImage = (req, res) => {
     if (err) {
       return res.status(500).send("ERROR occur during upload image", err);
     }
-
+    
     const obj = {
       user: { userId: req.body.userId, username: req.body.username },
       location: req.body.location,
@@ -35,13 +35,14 @@ const uploadImage = (req, res) => {
     Image.create(obj, (err, _item) => {
       if (err) {
         console.log(err);
-        res.status(400).send("upload imag");
-      } else {
+        res.status(404).send("upload imag error");
+      } 
+      else 
+      {
         res.status(201).send(obj);
       }
     });
 
-    // res.status(201).send(obj);
   });
 };
 
@@ -110,16 +111,41 @@ const commentById = async (req, res) => {
       userId: req.body.userId,
       username: req.body.username,
     },
-    description: req.body.comment,
+    comment: req.body.comment,
     timestemp: Date.now(),
   };
+
   await Image.findOneAndUpdate(
     { imgId: postId },
     { $push: { comments: postComment } },
-    done
   );
-  const updatedImage = await Image.findOne({ imgId: postId });
+
+  Image.findOne({imgId: postId}, (err, item)=> {
+    if (err) {
+      res.status(400).send(err)
+    }
+    res.status(201).send(item)
+  })
+
+
+  // res.status(201).send(updatedImage);
+};
+
+const likeById = async (req, res) => {
+  const postId = req.params.id;
+
+  let pic = await Image.findOne({ name: postId });
+  let newLikes = pic.likes +1;
+
+  const filter = { name: postId };
+  const update = { likes: newLikes }; 
+
+  let updatedImage = await Character.findOneAndUpdate(filter, update, {
+    new: true
+  });
+
   res.status(201).send(updatedImage);
+
 };
 
 module.exports = {
@@ -128,4 +154,5 @@ module.exports = {
   getImage,
   deleteImageById,
   commentById,
+  likeById,
 };

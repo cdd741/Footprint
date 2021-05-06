@@ -1,7 +1,7 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
-
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 .header {
   @include page-padding;
 
@@ -21,10 +21,11 @@
   }
 
   &__search-container {
+    border-radius: 50px;
     border: 1px solid black;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
   }
 
   &__search-input {
@@ -66,5 +67,19 @@
   }
 
   &__button {
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 45px;
+    max-width: 160px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  :hover {
+    text-decoration: none;
   }
 }

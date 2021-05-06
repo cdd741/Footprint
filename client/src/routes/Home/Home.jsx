@@ -2,9 +2,15 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Home.scss";
 import { getPostByIdUrl, getPostUrl } from "../../utils/apis";
+import Comments from "../../components/Comments/Comments";
 
 function Home(props) {
   const [postInfo, setPostInfo] = useState(null);
+  const [update, setUpdate] = useState(false);
+
+  const handleUpdate = () => {
+    setUpdate(true);
+  };
 
   useEffect(() => {
     if (props.match) {
@@ -20,11 +26,26 @@ function Home(props) {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (update) {
+      axios.get(getPostByIdUrl(postInfo.imgId)).then((res) => {
+        console.log(res.data);
+        setPostInfo(res.data[0]);
+      });
+      setUpdate(false);
+    }
+  }, [update]);
+
   return (
     postInfo && (
       <div className="home">
         <div className="home__hero">
-          <img src={postInfo.imgUrl} alt="hero picture" />
+          <img
+            className="home__hero-image"
+            src={postInfo.imgUrl}
+            alt="hero picture"
+          />
         </div>
         <div className="home__details">
           <div className="home__info">
@@ -42,9 +63,12 @@ function Home(props) {
             <div className="home__date">{postInfo.timestemp}</div>
           </div>
           <div className="home__description">{postInfo.description}</div>
-          <div className="home__comment">postInfo.comment</div>
         </div>
-        <div className="comments"></div>
+        <Comments
+          imageId={postInfo.imgId}
+          comments={postInfo.comments}
+          handleUpdate={handleUpdate}
+        />
       </div>
     )
   );

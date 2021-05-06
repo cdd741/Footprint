@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 
 const user = require("./routes/user");
 const post = require("./routes/post");
+const search = require("./routes/search");
 
 const app = express();
 app.use(express.json());
@@ -38,10 +39,8 @@ db.once("open", function () {
 app.use("/user", user);
 // app.use('/location', location);
 app.use('/post', post);
-// app.use('/search', search)
-app.get('/', (req, res) => {
-  res.send('123')
-})
+app.use('/search', search)
+
 
 app.listen(PORT, (err) => {
   if (err) throw err;
