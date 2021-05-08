@@ -1,0 +1,17 @@
+1. signup的时候加头像上传， user里面存一个 !!!!avatar!!!
+2. 在home page拿到的图片 要有上一个的img id 和下一个的img id
+
+
+1. 前端通过什么url拿到
+2. USER:     url/post/user/:postId
+3. LOCATION: url/post/location/:postId
+返回
+{previousId: ..., curImgObj: ..., nextId: ...}
+
+const img = {
+    prev: 'asdad',
+    next: 'asdasda',
+    curImg: {
+
+    }
+}

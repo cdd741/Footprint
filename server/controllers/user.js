@@ -7,8 +7,9 @@ const signup = (req, res) => {
     userId: uuidv4(),
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email,
+    email: req.body.email.toLowerCase(),
     bio: req.body.bio,
+    avatar: req.body.avatar,
   };
   User.create(obj, (err, _item) => {
     if (err) {
@@ -18,21 +19,20 @@ const signup = (req, res) => {
       res.status(400).send("Cannot create user");
     } else {
       // Code 201 means Created
-      res
-        .status(201)
-        .send({
-          userId: obj.userId,
-          username: obj.username,
-          email: obj.email,
-          bio: obj.bio,
-        });
+      res.status(201).send({
+        userId: obj.userId,
+        username: obj.username,
+        email: obj.email,
+        bio: obj.bio,
+        avatar: obj.avatar,
+      });
     }
   });
 };
 
 // User Signin
 function signin(req, res) {
-  User.findOne({ email: req.body.email }, function (err, user) {
+  User.findOne({ email: req.body.email.toLowerCase() }, function (err, user) {
     if (err) {
       console.log(err);
     } else {
@@ -49,6 +49,7 @@ function signin(req, res) {
             username: user.username,
             email: user.email,
             bio: user.bio,
+            avatar: user.avatar,
           });
           console.log("Correct password, user can signin");
         } else {

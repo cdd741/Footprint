@@ -3,6 +3,11 @@
 .upload {
   @include page-padding;
 
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2044837-jpeg.jpg")
+    &__image {
+    width: 100%;
+  }
+
   &__inputField {
     outline-style: none;
     border: 1px solid #ccc;

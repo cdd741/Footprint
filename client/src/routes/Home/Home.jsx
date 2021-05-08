@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Home.scss";
-import { getPostByIdUrl, getPostUrl } from "../../utils/apis";
+import { URL, getPostByIdUrl, getPostUrl } from "../../utils/apis";
 import Comments from "../../components/Comments/Comments";
 
 function Home(props) {
@@ -17,12 +17,12 @@ function Home(props) {
       const id = props.match.params.id;
       axios.get(getPostByIdUrl(id)).then((res) => {
         console.log(res.data);
-        setPostInfo(res.data[0]);
+        setPostInfo(res.data);
       });
     } else {
       axios.get(getPostUrl()).then((res) => {
         console.log(res.data);
-        setPostInfo(res.data[0]);
+        setPostInfo(res.data);
       });
     }
   }, []);
@@ -31,7 +31,7 @@ function Home(props) {
     if (update) {
       axios.get(getPostByIdUrl(postInfo.imgId)).then((res) => {
         console.log(res.data);
-        setPostInfo(res.data[0]);
+        setPostInfo(res.data);
       });
       setUpdate(false);
     }
@@ -43,32 +43,38 @@ function Home(props) {
         <div className="home__hero">
           <img
             className="home__hero-image"
-            src={postInfo.imgUrl}
+            src={`${URL}/${postInfo.curImgObj.imgUrl}`}
             alt="hero picture"
           />
         </div>
-        <div className="home__details">
-          <div className="home__info">
-            <div className="home_profile">
-              <div className="profile-pic">
-                <img src="" alt="profile" />
+        <div className="home__main-container">
+          <div className="home__details">
+            <div className="home__info">
+              <div className="home_profile">
+                <div className="profile-pic">
+                  <img src="" alt="profile" />
+                </div>
               </div>
-            </div>
-            <div className="home__name-location-container">
-              <div className="home__name" id="postInfo.user.userId">
-                {postInfo.user.username}
+              <div className="home__name-location-container">
+                <div className="home__name" id={postInfo.curImgObj.user.userId}>
+                  {postInfo.curImgObj.user.username}
+                </div>
+                <div className="home__location">
+                  {postInfo.curImgObj.location}
+                </div>
               </div>
-              <div className="home__location">{postInfo.location}</div>
+              <div className="home__date">{postInfo.curImgObj.timestemp}</div>
             </div>
-            <div className="home__date">{postInfo.timestemp}</div>
+            <div className="home__description">
+              {postInfo.curImgObj.description}
+            </div>
           </div>
-          <div className="home__description">{postInfo.description}</div>
+          <Comments
+            imageId={postInfo.curImgObj.imgId}
+            comments={postInfo.curImgObj.comments}
+            handleUpdate={handleUpdate}
+          />
         </div>
-        <Comments
-          imageId={postInfo.imgId}
-          comments={postInfo.comments}
-          handleUpdate={handleUpdate}
-        />
       </div>
     )
   );

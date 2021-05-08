@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./Signup.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
+import faker from "faker";
 
 import { signupUrl } from "../../utils/apis";
 import { globalContext } from "../../context/GlobalContext";
@@ -11,12 +12,14 @@ function Signin(routerProps) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+
     axios
       .post(signupUrl(), {
         username: e.target.username.value,
         email: e.target.email.value,
         password: e.target.password.value,
         bio: e.target.bio.value,
+        avatar: faker.image.avatar(),
       })
       .then((res) => {
         Cookies.set("login", true);
@@ -35,25 +38,53 @@ function Signin(routerProps) {
 
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
-        <label htmlFor="username">
-          <h3>Usersname</h3>
-          <input type="text" name="username" id="username" required />
+      <div class="segment">
+        <h1>Sign Up</h1>
+      </div>
+
+      <form class="signinform" onSubmit={handleOnSubmit}>
+        <label class="signinLabel" htmlFor="username">
+          <input
+            class="signininput"
+            type="text"
+            name="username"
+            id="username"
+            placeholder="User Name"
+            required
+          />
         </label>
-        <label htmlFor="email">
-          <h3>Email</h3>
-          <input type="email" name="email" id="email" required />
+        <label class="signinLabel" htmlFor="email">
+          <input
+            class="signininput"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email Addres"
+            required
+          />
         </label>
-        <label htmlFor="password">
-          <h3>Password</h3>
-          <input type="password" name="password" id="password" required />
+        <label class="signinLabel" htmlFor="password">
+          <input
+            class="signininput"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
         </label>
-        <label htmlFor="bio">
-          <h3>Bio</h3>
-          <textarea name="bio" id="bio" cols="30" rows="10"></textarea>
+        <label class="signinLabel" htmlFor="bio">
+          <textarea
+            class="signTextarea"
+            name="bio"
+            id="bio"
+            cols="30"
+            rows="10"
+            placeholder="Bio"
+          ></textarea>
         </label>
         <div>
-          <button>Signup</button>
+          <button class="signinButton">Signup</button>
         </div>
       </form>
     </div>

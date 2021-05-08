@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./Signin.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 import { signinUrl } from "../../utils/apis";
 import { globalContext } from "../../context/GlobalContext";
@@ -30,17 +31,36 @@ function Signin(routerProps) {
 
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
-        <label htmlFor="email">
-          <h3>Email</h3>
-          <input type="email" name="email" id="email" />
+      <div class="segment">
+        <h1>Sign In</h1>
+      </div>
+
+      <form class="signinform" onSubmit={handleOnSubmit}>
+        <label class="signinLabel" htmlFor="email">
+          <input
+            class="signininput"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email Address"
+          />
         </label>
-        <label htmlor="password">
-          <h3>Password</h3>
-          <input type="password" name="password" id="password" />
+        <label class="signinLabel" htmlor="password">
+          <input
+            class="signininput"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
         </label>
         <div>
-          <button>Signin</button>
+          <button class="signinButton">Submit</button>
+        </div>
+        <div class="segment">
+          <Link to="/signup">
+            <button class="signinButton">Sign Up</button>
+          </Link>
         </div>
       </form>
     </div>

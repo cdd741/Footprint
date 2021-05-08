@@ -27,9 +27,25 @@
     <title>React App</title>
   </head>
   <body>
+    <!-- <script src="./service-worker.js"></script>
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+    <script>
+      const beamsClient = new PusherPushNotifications.Client({
+        instanceId: "0cb7ba44-91c2-4d40-8d62-f94d703f6eb5",
+      });
+
+      beamsClient
+        .start()
+        .then(() => beamsClient.addDeviceInterest("hello"))
+        .then(() => console.log("Successfully registered and subscribed!"))
+        .catch(console.error);
+    </script> -->
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg1jZDQDUvm_GysSBkozsMB2aqNCXAOTA&libraries=places&callback=initMap&language=en"></script>
+
     <div id="root"></div>
-    <!--
+    <!-- 
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 

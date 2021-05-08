@@ -1,18 +1,20 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./Upload.scss";
 import axios from "axios";
 import { uploadUrl } from "../../utils/apis";
 import { globalContext } from "../../context/GlobalContext";
+import DropZone from "../../components/Dropzone/Dropzone";
+import PlacesAutocomplete from "../../components/PlaceAutocomplete/PlaceAutocomplete";
 
 function Upload(props) {
   const { user } = useContext(globalContext);
+  const [file, setFile] = useState(null);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const location = e.target.location.value;
     const description = e.target.description.value;
 
-    const file = e.target.image.files[0];
     const data = new FormData();
     data.append("file", file);
     data.append("location", location);
@@ -32,21 +34,34 @@ function Upload(props) {
       });
   };
 
+  const handleFileDrop = (file) => {
+    setFile(file);
+  };
+
   return (
     <div className="upload">
+      {file && (
+        <img
+          className="upload__image"
+          src={URL.createObjectURL(file)}
+          alt="upload image"
+        />
+      )}
+
       <form encType="multipart/form-data" onSubmit={handleOnSubmit}>
         <label htmlFor="image">
-          <h3>Select an image to upload:</h3>
-          <input type="file" name="image" />
+          <h3>Select an image to upload:</h3>{" "}
+          <DropZone handleFileDrop={handleFileDrop} />
         </label>
         <label htmlFor="location">
           <h3>Location: </h3>
-          <input
+          {/* <input
             className="upload__inputField"
             type="text"
             name="location"
             id="location"
-          />
+          /> */}
+          <PlacesAutocomplete />
         </label>
         <label htmlFor="description">
           <h3>Description: </h3>

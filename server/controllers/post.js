@@ -21,13 +21,13 @@ const uploadImage = (req, res) => {
     if (err) {
       return res.status(500).send("ERROR occur during upload image", err);
     }
-    
+
     const obj = {
       user: { userId: req.body.userId, username: req.body.username },
       location: req.body.location,
       description: req.body.description,
       likes: 0,
-      imgUrl: `http://localhost:8080/uploads/${req.file.filename}`,
+      imgUrl: `uploads/${req.file.filename}`,
       imgId: uuidv4(),
       timestemp: Date.now(),
     };
@@ -36,56 +36,114 @@ const uploadImage = (req, res) => {
       if (err) {
         console.log(err);
         res.status(404).send("upload imag error");
-      } 
-      else 
-      {
+      } else {
         res.status(201).send(obj);
       }
     });
-
   });
 };
+
+function getimage(postId) {
+  return Image.findOne({ imgId: postId }).exec();
+}
+
+function findRandomtImg() {
+  var curdate = Date.now();
+  return Image.findOne({ timestemp: { $lte: curdate } }).exec();
+}
+
+function getPreRandomImg(img_id) {
+  return Image.find({ imgId: { $gt: img_id } })
+    .sort({ imgId: 1 })
+    .limit(1)
+    .exec();
+}
+
+function getNextRandomImg(img_id) {
+  return Image.find({ imgId: { $lt: img_id } })
+    .sort({ imgId: -1 })
+    .limit(1)
+    .exec();
+}
+
+function findfirstRandomimg() {
+  return Image.find({}).sort({ _id: -1 }).limit(1).exec();
+}
+
+function findlastRandomimg() {
+  return Image.find({}).sort({ _id: 1 }).limit(1).exec();
+}
 
 // Image get
 const getImageById = async (req, res) => {
-  Image.find({ imgId: req.params.id }, (err, items) => {
-    if (err) {
-      console.log(err);
-      Image.deleteMany({});
-      res.status(400).send("find image with id error");
-    } else {
-      if (!items) {
-        // mongoose will return null if not found this image
-        // Code 403 means Forbidden
-        res.status(403).send("Cannot find this image");
-        console.log("Cannot find this image");
-      } else {
-        res.status(200).send(items);
-      }
-    }
-  });
+  let postId = req.params.id;
+
+  let curImg = await getimage(postId);
+
+  let previous = await getPreRandomImg(curImg.imgId);
+  let next = await getNextRandomImg(curImg.imgId);
+
+  let preImgId = "";
+  let nextImgId = "";
+
+  if (previous.length == 1) {
+    preImgId = previous[0].imgId;
+  } else {
+    let last = await findlastRandomimg();
+    preImgId = last[0].imgId;
+  }
+
+  if (next.length == 1) {
+    nextImgId = next[0].imgId;
+  } else {
+    let first = await findfirstRandomimg();
+    nextImgId = first[0].imgId;
+  }
+
+  const obj = {
+    previousId: preImgId,
+    curImgObj: curImg,
+    nextId: nextImgId,
+  };
+
+  res.send(obj);
 };
 
-const getImage = async (req, res) => {
-  Image.find({}, (err, items) => {
-    console.log(items);
-    if (err) {
-      console.log(err);
-      Image.deleteMany({});
-      res.status(400).send("find image with empty error");
-    } else {
-      if (items.length === 0) {
-        // mongoose will return null if not found this image
-        // Code 403 means Forbidden
-        res.status(403).send("Does not exit any image in database");
-        console.log("Does not exit an image in database");
-      } else {
-        // query.limit(10);
-        // query.sort({ likes: 1 });
-        res.status(200).send(items);
-      }
-    }
-  });
+const getImage = async (_req, res) => {
+  let item = await findRandomtImg();
+  if (item) {
+    img_id = item.imgId;
+  } else {
+    res.status(404);
+    return;
+  }
+  let previous = await getPreRandomImg(img_id);
+  let next = await getNextRandomImg(img_id);
+
+  let preImgId = "";
+  let nextImgId = "";
+
+  if (previous.length == 1) {
+    preImgId = previous[0].imgId;
+  } else {
+    let last = await findlastRandomimg();
+    preImgId = last[0].imgId;
+  }
+
+  if (next.length == 1) {
+    nextImgId = next[0].imgId;
+  } else {
+    let first = await findfirstRandomimg();
+    nextImgId = first[0].imgId;
+  }
+
+  const obj = {
+    previousId: preImgId,
+    curImgObj: item,
+    nextId: nextImgId,
+  };
+
+  res.send(obj);
 };
 
 // Image Delete
@@ -117,16 +175,15 @@ const commentById = async (req, res) => {
 
   await Image.findOneAndUpdate(
     { imgId: postId },
-    { $push: { comments: postComment } },
+    { $push: { comments: postComment } }
   );
 
-  Image.findOne({imgId: postId}, (err, item)=> {
+  Image.findOne({ imgId: postId }, (err, item) => {
     if (err) {
-      res.status(400).send(err)
+      res.status(400).send(err);
     }
-    res.status(201).send(item)
-  })
-
+    res.status(201).send(item);
+  });
 
   // res.status(201).send(updatedImage);
 };
@@ -135,17 +192,135 @@ const likeById = async (req, res) => {
   const postId = req.params.id;
 
   let pic = await Image.findOne({ name: postId });
-  let newLikes = pic.likes +1;
+  let newLikes = pic.likes + 1;
 
   const filter = { name: postId };
-  const update = { likes: newLikes }; 
+  const update = { likes: newLikes };
 
   let updatedImage = await Character.findOneAndUpdate(filter, update, {
-    new: true
+    new: true,
   });
 
   res.status(201).send(updatedImage);
+};
 
+function findUserNextImg(postdate, userId) {
+  return Image.find({ timestemp: { $gt: postdate } })
+    .find({ userId: userId })
+    .sort({ timestemp: 1 })
+    .limit(1)
+    .exec();
+}
+
+function findUserPreImg(postdate, userId) {
+  return Image.find({ timestemp: { $lt: postdate } })
+    .find({ userId: userId })
+    .sort({ timestemp: -1 })
+    .limit(1)
+    .exec();
+}
+
+const getUserImageById = async (req, res) => {
+  const postId = req.params.id;
+
+  let item = await getimage(postId);
+
+  let postdate = item.timestemp;
+  let userId = item.user.userId;
+
+  let previous = await findUserPreImg(postdate, userId);
+  let next = await findUserNextImg(postdate, userId);
+
+  let preImgId = "";
+  let nextImgId = "";
+
+  if (previous.length == 1) {
+    preImgId = previous[0].imgId;
+  } else {
+    preImgId = "This is the last image";
+  }
+
+  if (next.length == 1) {
+    nextImgId = next[0].imgId;
+  } else {
+    nextImgId = "This is the last image";
+  }
+
+  const obj = {
+    previousId: preImgId,
+    curImgObj: item,
+    nextId: nextImgId,
+  };
+
+  res.send(obj);
+};
+
+function getPreImg(img_id, img_location) {
+  return Image.find({ _id: { $gt: img_id } })
+    .find({ location: img_location })
+    .sort({ _id: 1 })
+    .limit(1)
+    .exec();
+}
+
+function getNextimg(img_id, img_location) {
+  return Image.find({ _id: { $lt: img_id } })
+    .find({ location: img_location })
+    .sort({ _id: -1 })
+    .limit(1)
+    .exec();
+}
+
+function findfirstimg(img_location) {
+  return Image.find({ location: img_location })
+    .sort({ _id: -1 })
+    .limit(1)
+    .exec();
+}
+
+function findlastimg(img_location) {
+  return Image.find({ location: img_location })
+    .sort({ _id: 1 })
+    .limit(1)
+    .exec();
+}
+
+const getLocationImageById = async (req, res) => {
+  const postId = req.params.id;
+
+  let item = await getimage(postId);
+
+  let img_id = item._id;
+  let img_likes = item.likes;
+  let img_location = item.location;
+
+  let previous = await getPreImg(img_id, img_location);
+  let next = await getNextimg(img_id, img_location);
+
+  let preImgId = "";
+  let nextImgId = "";
+
+  if (previous.length == 1) {
+    preImgId = previous[0].imgId;
+  } else {
+    let last = await findlastimg(img_location);
+    preImgId = last[0].imgId;
+  }
+
+  if (next.length == 1) {
+    nextImgId = next[0].imgId;
+  } else {
+    let first = await findfirstimg(img_location);
+    nextImgId = first[0].imgId;
+  }
+
+  const obj = {
+    previousId: preImgId,
+    curImgObj: item,
+    nextId: nextImgId,
+  };
+
+  res.send(obj);
 };
 
 module.exports = {
@@ -155,4 +330,6 @@ module.exports = {
   deleteImageById,
   commentById,
   likeById,
+  getUserImageById,
+  getLocationImageById,
 };
