@@ -3,7 +3,7 @@ const User = require("../model/User");
 
 async function search(req, res) {
   if (!req.body.searchTerm) {
-    res.send("no input");
+    res.send({});
     return;
   }
   let locQuery = await Image.find({

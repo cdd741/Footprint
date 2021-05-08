@@ -35,7 +35,7 @@ function Signin(routerProps) {
         <h1>Sign In</h1>
       </div>
 
-      <form class="signinform" onSubmit={handleOnSubmit}>
+      <form class="signinform signinform--onboard" onSubmit={handleOnSubmit}>
         <label class="signinLabel" htmlFor="email">
           <input
             class="signininput"
@@ -55,7 +55,9 @@ function Signin(routerProps) {
           />
         </label>
         <div>
-          <button class="signinButton">Submit</button>
+          <button class="signinButton" onSubmit={handleOnSubmit}>
+            Submit
+          </button>
         </div>
         <div class="segment">
           <Link to="/signup">

@@ -52,18 +52,23 @@ const notLoggedIn = (
 function Header(props) {
   const { user, loggingInfo } = useContext(globalContext);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState({});
 
   const handleOnChange = (e) => {
     setSearchTerm(e.target.value);
+
     axios.post(searchUrl(), { searchTerm: e.target.value }).then((res) => {
       console.log(res.data);
+      setSearchResult(res.data);
     });
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnBlur = (e) => {
     e.preventDefault();
+    e.target.value = "";
+    setSearchResult({});
   };
+
   const useStyles = makeStyles({
     underline: {
       "&&&:before": {
@@ -77,57 +82,82 @@ function Header(props) {
   const classes = useStyles();
 
   return (
-    <header className="header">
-      <div className="header__logo-container">
-        <Link to="/">
-          <h3 className="header__logo">Footprint</h3>
-        </Link>
-        <div className="header__links header__links--mobile">
+    <div className="header__container">
+      <header className="header">
+        <div className="header__logo-container">
+          <Link to="/">
+            <h3 className="header__logo">Footprint</h3>
+          </Link>
+          <div className="header__links header__links--mobile">
+            {loggingInfo && loggedIn(user)}
+            {!loggingInfo && notLoggedIn}
+          </div>
+        </div>
+        <div
+          className={`header__search-bar${
+            Object.keys(searchResult).length !== 0
+              ? " header__search-bar--expand"
+              : ""
+          }`}
+        >
+          <form className="header__search-container" autoComplete="off">
+            <input
+              className="header__search-input"
+              type="text"
+              name="input"
+              id="input"
+              value={searchTerm}
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
+            />
+            <img
+              className="header__search-icon"
+              src={searchIcon}
+              alt="search icon"
+            />
+          </form>
+          {Object.keys(searchResult).length !== 0 && (
+            <div className="dropdown">
+              {Object.keys(searchResult.location).length !== 0 && (
+                <div className="dropdown__container dropdown__container--location">
+                  <div className="dropdown__label dropdown__label--location">
+                    locations
+                  </div>
+                  <ul className="dropdown__items">
+                    {Object.keys(searchResult.location).map((locationKey) => (
+                      <li className="dropdown__item" id={locationKey}>
+                        {locationKey}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {Object.keys(searchResult.user).length !== 0 && (
+                <div className="dropdown__container dropdown__container--user">
+                  <div className="dropdown__label dropdown__label--user">
+                    users
+                  </div>
+                  <ul className="dropdown__items">
+                    {Object.keys(searchResult.user).map((userKey) => (
+                      <li
+                        className="dropdown__item"
+                        id={searchResult.user[user]}
+                      >
+                        {userKey}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="header__links header__links--tablet">
           {loggingInfo && loggedIn(user)}
           {!loggingInfo && notLoggedIn}
         </div>
-      </div>
-      <form className="header__search-container" autoComplete="off">
-        <input
-          className="header__search-input"
-          type="text"
-          name="input"
-          id="input"
-          value={searchTerm}
-          onChange={handleOnChange}
-        />
-        <input
-          className="header__search-icon"
-          type="image"
-          name="submit"
-          id="submit"
-          src={searchIcon}
-          alt="search icon"
-        />
-      </form>
-      <div className="header__links header__links--tablet">
-        {loggingInfo && loggedIn(user)}
-        {!loggingInfo && notLoggedIn}
-      </div>
-      {searchResult && (
-        <div className="dropdown">
-          {searchResult.location && (
-            <div className="dropdown__container dropdown__container--location">
-              <div className="dropdown__label dropdown__label--location">
-                locations
-              </div>
-              searchResult.location.map()
-            </div>
-          )}
-          {searchResult.user && (
-            <div className="dropdown__container dropdown__container--user">
-              <div className="dropdown__label dropdown__label--user">users</div>
-              searchResult.user.map()
-            </div>
-          )}
-        </div>
-      )}
-    </header>
+      </header>
+    </div>
   );
 }
 

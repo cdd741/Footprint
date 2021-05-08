@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import "./Dropzone.scss";
 
 export default function Dropzone({ handleFileDrop }) {
   const onDrop = useCallback((acceptedFiles) => {
@@ -9,12 +10,20 @@ export default function Dropzone({ handleFileDrop }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
+    <div {...getRootProps()} className="dropdownzone">
+      <input {...getInputProps()} className="dropdownzone__input" />
       {isDragActive ? (
-        <p>Drop the files here ...</p>
+        <label htmlFor="description" htmlFor="description">
+          <h4 class="uploadBox">Drop the files here ...</h4>
+        </label>
       ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <label htmlFor="description" htmlFor="description">
+          <p class="uploadBox">
+            {/* {" "}
+            Drag 'n' drop some files here, or click to select files{" "} */}{" "}
+            Plz drop nudes here{" "}
+          </p>
+        </label>
       )}
     </div>
   );

@@ -1,0 +1,46 @@
+$ruler: 16px;
+$color-red: #ae1100;
+$color-bg: #ebecf0;
+$color-shadow: #a1a6b6;
+$color-white: #fff;
+
+.dropdownzone {
+  height: 100%;
+
+  & input {
+    height: 100%;
+  }
+
+  &__input {
+    height: 100%;
+
+    & lable {
+      height: 100%;
+    }
+  }
+}
+
+.uploadBox {
+  color: $color-shadow;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -0.2px;
+  font-size: $ruler;
+  border: 0;
+  outline: 0;
+  font-size: $ruler;
+  border-radius: $ruler * 2;
+  padding: $ruler;
+  background-color: $color-bg;
+  text-shadow: 1px 1px 0 $color-white;
+  margin-right: $ruler/2;
+  box-shadow: inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+  width: 100%;
+  resize: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  margin: 0;
+  height: 100%;
+}

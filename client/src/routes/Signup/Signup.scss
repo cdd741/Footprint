@@ -46,10 +46,8 @@ html {
   }
 }
 
-.signinform {
-  padding: $ruler;
-  width: $ruler * 20;
-  margin: 0 auto;
+.signinform--onboard {
+  max-width: 500px;
 }
 
 .segment {

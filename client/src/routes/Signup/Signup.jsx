@@ -42,7 +42,7 @@ function Signin(routerProps) {
         <h1>Sign Up</h1>
       </div>
 
-      <form class="signinform" onSubmit={handleOnSubmit}>
+      <form class="signinform signinform--onboard" onSubmit={handleOnSubmit}>
         <label class="signinLabel" htmlFor="username">
           <input
             class="signininput"

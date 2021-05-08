@@ -57,7 +57,7 @@ export default function PlacesAutocomplete() {
   return (
     <div ref={ref}>
       <input
-        className="upload__inputField"
+        className="signininput"
         type="text"
         name="location"
         id="location"

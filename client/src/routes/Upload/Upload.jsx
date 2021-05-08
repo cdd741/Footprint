@@ -12,6 +12,7 @@ function Upload(props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    console.log("triggered");
     const location = e.target.location.value;
     const description = e.target.description.value;
 
@@ -40,44 +41,48 @@ function Upload(props) {
 
   return (
     <div className="upload">
-      {file && (
-        <img
-          className="upload__image"
-          src={URL.createObjectURL(file)}
-          alt="upload image"
-        />
-      )}
+      <div className="segment">
+        <h2>Select an image to upload:</h2>{" "}
+      </div>
 
-      <form encType="multipart/form-data" onSubmit={handleOnSubmit}>
-        <label htmlFor="image">
-          <h3>Select an image to upload:</h3>{" "}
+      <form
+        className="signinform signinform--upload"
+        encType="multipart/form-data"
+        onSubmit={handleOnSubmit}
+      >
+        <div className="upload__input-container">
           <DropZone handleFileDrop={handleFileDrop} />
-        </label>
-        <label htmlFor="location">
-          <h3>Location: </h3>
-          {/* <input
-            className="upload__inputField"
-            type="text"
-            name="location"
-            id="location"
-          /> */}
-          <PlacesAutocomplete />
-        </label>
-        <label htmlFor="description">
-          <h3>Description: </h3>
-          <input
-            className="upload__inputField"
-            type="text"
-            name="description"
-            id="description"
-          />
-        </label>
-        <div>
-          <input
-            className="upload__file-container"
-            type="submit"
-            value="Upload Image"
-          />
+          {file && (
+            <img
+              className="upload__image"
+              src={URL.createObjectURL(file)}
+              alt="upload image"
+            />
+          )}
+        </div>
+        <div className="upload__input-container">
+          <label className="signinLabel" htmlFor="location">
+            <PlacesAutocomplete />
+          </label>
+
+          <label htmlFor="description" htmlFor="description">
+            <textarea
+              className="uploadTextarea"
+              name="description"
+              id="description"
+              cols="30"
+              rows="10"
+              type="text"
+              placeholder="Description"
+            ></textarea>
+          </label>
+          <div align="right">
+            <input
+              className="upload__file-container"
+              type="submit"
+              value="Upload Image"
+            />
+          </div>
         </div>
       </form>
     </div>
