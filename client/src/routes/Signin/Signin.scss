@@ -1,6 +1,7 @@
 $ruler: 16px;
 $color-red: #ae1100;
-$color-bg: #ebecf0;
+// $color-bg: #ebecf0;
+$color-bg: white;
 $color-shadow: #babecc;
 $color-white: #fff;
 
@@ -22,7 +23,7 @@ html {
   padding: $ruler;
   background-color: $color-bg;
   text-shadow: 1px 1px 0 $color-white;
-  font-family: "Montserrat", sans-serif;
+  // font-family: "Montserrat", sans-serif;
   letter-spacing: -0.2px;
   font-size: $ruler;
   color: $color-red;
@@ -59,7 +60,7 @@ html {
 }
 
 .signininput {
-  font-family: "Montserrat", sans-serif;
+  // font-family: "Montserrat", sans-serif;
   letter-spacing: -0.2px;
   font-size: $ruler;
   border: 0;

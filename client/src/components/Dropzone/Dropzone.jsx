@@ -19,9 +19,7 @@ export default function Dropzone({ handleFileDrop }) {
       ) : (
         <label htmlFor="description" htmlFor="description">
           <p class="uploadBox">
-            {/* {" "}
-            Drag 'n' drop some files here, or click to select files{" "} */}{" "}
-            Plz drop nudes here{" "}
+            Drag 'n' drop some files here, or click to select files
           </p>
         </label>
       )}

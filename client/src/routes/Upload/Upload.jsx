@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Upload.scss";
 import axios from "axios";
 import { uploadUrl } from "../../utils/apis";
@@ -22,6 +22,7 @@ function Upload(props) {
     data.append("description", description);
     data.append("userId", user.userId);
     data.append("username", user.username);
+    data.append("avatar", user.avatar);
 
     axios
       .post(uploadUrl(), data)
@@ -38,6 +39,10 @@ function Upload(props) {
   const handleFileDrop = (file) => {
     setFile(file);
   };
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "";
+  }, []);
 
   return (
     <div className="upload">

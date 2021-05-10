@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import getTimePassed from "../../utils/getTimePassed";
 import { globalContext } from "../../context/GlobalContext";
 import { commentPostUrl } from "../../utils/apis";
+import { Link } from "react-router-dom";
 
 function Comments({ imageId, comments, handleUpdate }) {
   const { user, loggingInfo } = useContext(globalContext);
@@ -26,7 +27,11 @@ function Comments({ imageId, comments, handleUpdate }) {
     } else {
       axios
         .post(commentPostUrl(imageId), {
-          user: { userId: user.userId, username: user.username },
+          user: {
+            userId: user.userId,
+            username: user.username,
+            avatar: user.avatar,
+          },
           comment: commentText,
         })
         .then((res) => {
@@ -44,26 +49,43 @@ function Comments({ imageId, comments, handleUpdate }) {
 
   return (
     <div className="comments">
-      <h3 className="comments__title">{comments.length} Comments</h3>
-
-      <div className="comments__form">
-        <img className="comments__profile-picture" src="" alt="profile pic" />
-        <form className="comments__input" onSubmit={handleOnSubmit}>
-          <label className="comments__label" htmlFor="comment">
-            <h5 className="comments__label-text">JOIN THE CONVERSATION</h5>
-            <textarea
-              className="comments__textarea"
-              type="text"
-              name="comment"
-              id="comment"
-              value={commentText}
-              placeholder="Add a comment"
-              onChange={handleOnChange}
-            ></textarea>
-          </label>
-          <Button className="comments__button" content="COMMENT" />
-        </form>
-      </div>
+      {loggingInfo ? (
+        <>
+          <h3 className="comments__title">{comments.length} Comments</h3>
+          <div className="comments__form">
+            <img
+              className="comments__profile-picture"
+              src={user.avatar}
+              alt="profile pic"
+            />
+            <form className="comments__input" onSubmit={handleOnSubmit}>
+              <label className="comments__label" htmlFor="comment">
+                <h5 className="comments__label-text">JOIN THE CONVERSATION</h5>
+                <textarea
+                  className="comments__textarea"
+                  type="text"
+                  name="comment"
+                  id="comment"
+                  value={commentText}
+                  placeholder="Add a comment"
+                  onChange={handleOnChange}
+                ></textarea>
+              </label>
+              <Button className="comments__button" content="COMMENT" />
+            </form>
+          </div>
+        </>
+      ) : (
+        <p>
+          Please{" "}
+          <span>
+            <Link to="/signin" className="signin">
+              Signin
+            </Link>
+          </span>{" "}
+          To Comment On This Post
+        </p>
+      )}
 
       <ul className="comments__list">
         {comments
@@ -78,12 +100,13 @@ function Comments({ imageId, comments, handleUpdate }) {
               >
                 <img
                   className="comment__item comment__item--left"
-                  src={comment.img}
-                  alt=""
+                  src={comment.user.avatar}
+                  alt="user profile picture"
+                  id={comment.user.userId}
                 />
                 <div className="comment__item comment__item--right">
                   <div className="comment__title">
-                    <h4 className="comment__name">{comment.name}</h4>
+                    <h4 className="comment__name">{comment.user.username}</h4>
                     <h4 className="comment__date">{timePassed}</h4>
                   </div>
                   <p className="comment__description">{comment.comment}</p>

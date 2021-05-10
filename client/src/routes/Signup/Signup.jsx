@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import "./Signup.scss";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -35,6 +35,10 @@ function Signin(routerProps) {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    document.body.style.backgroundImage = "";
+  }, []);
 
   return (
     <div>

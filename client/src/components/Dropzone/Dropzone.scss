@@ -1,6 +1,7 @@
 $ruler: 16px;
 $color-red: #ae1100;
-$color-bg: #ebecf0;
+// $color-bg: #ebecf0;
+$color-bg: white;
 $color-shadow: #a1a6b6;
 $color-white: #fff;
 
@@ -9,20 +10,23 @@ $color-white: #fff;
 
   & input {
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__input {
     height: 100%;
 
     & lable {
-      height: 100%;
+      // height: 100%;
     }
   }
 }
 
 .uploadBox {
   color: $color-shadow;
-  font-family: "Montserrat", sans-serif;
+  // font-family: "Montserrat", sans-serif;
   letter-spacing: -0.2px;
   font-size: $ruler;
   border: 0;

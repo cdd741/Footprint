@@ -2,6 +2,12 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+$ruler: 16px;
+$color-red: #ae1100;
+$color-bg: #ebecf0;
+$color-bg: white;
+$color-shadow: #a1a6b6;
+$color-white: #fff;
 .header {
   &__container {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
@@ -23,7 +29,7 @@
     justify-content: space-between;
     align-items: center;
     height: 48px;
-    padding: 16px 0 0 0;
+    padding: 16px 0 8px 0;
 
     @include tablet {
       padding: 0;
@@ -31,17 +37,32 @@
   }
 
   &__logo {
+    font-weight: 600;
+    height: 40px;
+    // width: 100px;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__search-bar {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
     position: relative;
     border-radius: 8px;
     outline: none;
     height: 48px;
+    width: 100%;
 
     &--expand {
       border-radius: 8px 8px 0 0;
+    }
+
+    @include tablet {
+      margin-right: 16px;
+      margin-left: 16px;
     }
   }
   &__search-container {
@@ -64,6 +85,7 @@
     width: 100%;
     outline: none;
     font-size: 16px;
+    background-color: transparent;
   }
 
   &__search-icon {
@@ -100,15 +122,40 @@
     border-radius: 50%;
     object-fit: cover;
     object-position: left;
-    border: 1px solid #ffffff;
+    // border: 2px solid #ffffff;
     box-sizing: border-box;
   }
 
   &__link {
-    display: flex;
   }
 
   &__button {
+    &:active {
+      box-shadow: inset 1px 1px 2px $color-shadow,
+        inset -1px -1px 2px $color-white;
+    }
+    &--add,
+    &--notification {
+      height: 48px;
+      width: 48px;
+      border-radius: 50%;
+      color: $black;
+      background-color: #e4e6eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &--notification {
+      margin: 0 8px;
+    }
+
+    &--signin,
+    &--signup {
+      font-weight: 400;
+      margin-left: 16px;
+    }
+
     &--icon {
     }
 
@@ -125,21 +172,24 @@
 .dropdown {
   color: $silver;
   box-sizing: border-box;
-  z-index: 1000;
-  position: relative;
+  position: absolute;
   width: 100%;
   border-top: 1px solid $mercury;
   background-color: white;
   color: black;
   border-radius: 0 0 8px 8px;
   overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 16px 0 0 0;
+  z-index: 10000;
 
   @include tablet {
-    width: 400px;
+    max-width: 400px;
   }
 
   &__container {
-    margin: 8px 0 0 0;
+    margin: 4px 0 0 0;
   }
 
   &__label {
@@ -153,18 +203,24 @@
   &__items {
     margin: 0;
     padding: 0;
+    // pointer-events: none;
+    cursor: pointer;
+    z-index: 200;
   }
 
   &__item {
-    padding: 4px 0 4px 40px;
+    padding: 12px 0 12px 40px;
 
     list-style-type: none;
     display: flex;
     justify-content: flex-start;
-    z-index: 10;
+    text-align: left;
+    transition: 0.3s;
+
     &:hover {
       background-color: $mercury;
       cursor: pointer;
+      border-left: 4px solid $black;
     }
   }
 }

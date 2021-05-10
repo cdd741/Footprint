@@ -8,6 +8,7 @@
   &__title {
     margin: 0;
     font-weight: 600;
+    text-align: left;
   }
 
   &__form {
@@ -23,15 +24,11 @@
   &__form {
     display: flex;
     justify-content: space-between;
-    border-bottom: $border;
+    // border-bottom: $border;
     padding-bottom: 24px;
 
     @include tablet {
       align-items: flex-end;
-    }
-
-    @include desktop {
-      padding-right: 2rem;
     }
   }
 
@@ -72,6 +69,7 @@
     margin: 0;
     font-weight: 500;
     color: $silver;
+    text-align: left;
   }
 
   &__textarea {
@@ -112,7 +110,7 @@
       min-width: 160px;
       width: 160px;
       max-width: 160px;
-      margin: 0 2.5rem 0 16px;
+      margin: 0 0 0 16px;
     }
 
     @include desktop {
@@ -124,13 +122,9 @@
 // single comment component
 .comment {
   display: flex;
-  margin-top: 1.5rem;
+  padding-top: 1.5rem;
   list-style-type: none;
-  border-bottom: $border;
-
-  @include desktop {
-    padding-right: 2rem;
-  }
+  border-top: 2px solid rgba(225, 225, 225, 0.6);
 
   &__item {
     &--left {
@@ -174,6 +168,8 @@
   &__description {
     overflow-wrap: break-word;
     margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-start;
   }
 
   &__delete-btn {
@@ -193,4 +189,10 @@
       outline: none;
     }
   }
+}
+
+.signin {
+  display: inline;
+  font-weight: 600;
+  text-decoration: underline;
 }

@@ -3,8 +3,109 @@
 @use '../../styles/partials/variables' as *;
 
 .home {
-  @include page-padding;
-  &__hero-image {
+  margin-top: -128px;
+  @include tablet {
+    margin-top: -80px;
+  }
+  color: white;
+
+  &__hero {
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__main-container-wrapper {
+    z-index: 1000;
+    // background: rgba(64, 64, 70, 0.65);
+    background: rgba(0, 0, 0, 0.8);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8) 500px);
+  }
+
+  &__main-container {
+    @include page-padding;
+  }
+
+  &__background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__details {
+  }
+
+  &__info {
+  }
+
+  &__location {
+    text-align: left;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
+    padding-top: 100px;
+  }
+
+  &__container {
+    &--left {
+      display: flex;
+      align-items: flex-start;
+      height: 100%;
+      align-self: flex-start;
+    }
+
+    &--right {
+      margin: 0 0 0 16px;
+      width: 100%;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &--upper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &--lower {
+      text-align: left;
+    }
+  }
+
+  &__info {
+  }
+
+  &__profile {
+    &-picture {
+      height: 64px;
+      width: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: left;
+      box-sizing: border-box;
+    }
+
+    &-name {
+      text-align: left;
+      margin: 0;
+    }
+
+    &-location {
+      display: flex;
+      align-items: flex-end;
+      margin: 0 0 16px 0;
+    }
+
+    &-date {
+    }
   }
 }
