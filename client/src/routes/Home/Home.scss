@@ -4,10 +4,11 @@
 
 .home {
   margin-top: -128px;
+  color: white;
+
   @include tablet {
     margin-top: -80px;
   }
-  color: white;
 
   &__hero {
     height: 100vh;
@@ -19,8 +20,7 @@
   &__main-container-wrapper {
     z-index: 1000;
     // background: rgba(64, 64, 70, 0.65);
-    background: rgba(0, 0, 0, 0.8);
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8) 500px);
+    background: linear-gradient(rgba(0, 0, 0, 0.4) 25%, rgba(0, 0, 0, 0.8));
   }
 
   &__main-container {

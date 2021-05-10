@@ -14,12 +14,12 @@ export default function Dropzone({ handleFileDrop }) {
       <input {...getInputProps()} className="dropdownzone__input" />
       {isDragActive ? (
         <label htmlFor="description" htmlFor="description">
-          <h4 class="uploadBox">Drop the files here ...</h4>
+          <h4 class="uploadBox">Drop the image here ...</h4>
         </label>
       ) : (
         <label htmlFor="description" htmlFor="description">
           <p class="uploadBox">
-            Drag 'n' drop some files here, or click to select files
+            Drag 'n' drop some image here, or click to select image
           </p>
         </label>
       )}

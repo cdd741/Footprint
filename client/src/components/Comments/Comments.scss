@@ -5,6 +5,11 @@
 .comments {
   margin-top: 2.5rem;
 
+  &__signin-request {
+    margin: 0;
+    padding-bottom: 32px;
+  }
+
   &__title {
     margin: 0;
     font-weight: 600;
@@ -170,6 +175,7 @@
     margin-top: 0.5rem;
     display: flex;
     justify-content: flex-start;
+    text-align: left;
   }
 
   &__delete-btn {

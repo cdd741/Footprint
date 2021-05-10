@@ -76,7 +76,7 @@ function Comments({ imageId, comments, handleUpdate }) {
           </div>
         </>
       ) : (
-        <p>
+        <p className="comments__signin-request">
           Please{" "}
           <span>
             <Link to="/signin" className="signin">

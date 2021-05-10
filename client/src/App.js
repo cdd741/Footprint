@@ -4,6 +4,7 @@ import "./styles/common.scss";
 import { Route, Switch } from "react-router-dom";
 
 import Header from "./common/Header/Header";
+import Footer from "./common/Footer/Footer";
 import Signin from "./routes/Signin/Signin";
 import Signup from "./routes/Signup/Signup";
 import Home from "./routes/Home/Home";
@@ -41,6 +42,7 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Home />
+              <Footer />
             </Route>
             <Route
               path="/upload"
@@ -51,10 +53,14 @@ function App() {
             <Route
               path="/:id"
               render={(routerProps) => {
-                return <Home {...routerProps} />;
+                return (
+                  <>
+                    <Home {...routerProps} />
+                    <Footer />
+                  </>
+                );
               }}
             />
-            <Route></Route>
           </Switch>
         </Route>
       </Switch>
