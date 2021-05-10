@@ -1,6 +1,7 @@
 const User = require("../model/User");
 const { v4: uuidv4 } = require("uuid");
 
+
 // User create
 const signup = (req, res) => {
   const obj = {

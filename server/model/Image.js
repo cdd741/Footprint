@@ -12,9 +12,12 @@ const imageSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    avatar: {
+      type: String,
+    },
   },
   timestemp: {
-    type: Date,
+    type: Number,
     required: true,
   },
   location: {
@@ -32,6 +35,9 @@ const imageSchema = new mongoose.Schema({
   },
   likes: {
     type: Number,
+  },
+  description: {
+    type: String,
   },
   comments: {
     type: Array,
@@ -51,6 +57,9 @@ const imageSchema = new mongoose.Schema({
         username: {
           type: String,
           required: true,
+        },
+        avatar: {
+          type: String,
         },
       },
       description: {

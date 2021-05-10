@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const user = require("./routes/user");
 const post = require("./routes/post");
 const search = require("./routes/search");
+const mockdata = require("./routes/mockdata");
 
 const app = express();
 app.use(express.json());
@@ -40,6 +41,7 @@ app.use("/user", user);
 // app.use('/location', location);
 app.use('/post', post);
 app.use('/search', search)
+app.use('/mockdata', mockdata)
 
 
 app.listen(PORT, (err) => {

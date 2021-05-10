@@ -1,5 +1,6 @@
 const multer = require("multer");
 const Image = require("../model/Image");
+const User = require("../model/User");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 
@@ -15,20 +16,25 @@ const upload = multer({
   limits: { fileSize: 100000000, files: 1 },
 }).single("file");
 
+function findUserAvatar(postid){
+  return User.findOne({ userId: postId }).exec();
+}
+
 // Image uploa d
-const uploadImage = (req, res) => {
+const uploadImage = async(req, res) => {
   upload(req, res, (err) => {
     if (err) {
       return res.status(500).send("ERROR occur during upload image", err);
     }
 
     const obj = {
-      user: { userId: req.body.userId, username: req.body.username },
+      user: { userId: req.body.userId, username: req.body.username, avatar: req.body.avatar, },
       location: req.body.location,
       description: req.body.description,
       likes: 0,
       imgUrl: `uploads/${req.file.filename}`,
       imgId: uuidv4(),
+  
       timestemp: Date.now(),
     };
 
@@ -38,6 +44,7 @@ const uploadImage = (req, res) => {
         res.status(404).send("upload imag error");
       } else {
         res.status(201).send(obj);
+        console.log(obj)
       }
     });
   });
@@ -78,7 +85,9 @@ function findlastRandomimg() {
 const getImageById = async (req, res) => {
   let postId = req.params.id;
 
+  console.log('postid', postId);
   let curImg = await getimage(postId);
+  console.log(curImg)
 
   let previous = await getPreRandomImg(curImg.imgId);
   let next = await getNextRandomImg(curImg.imgId);
@@ -163,29 +172,30 @@ const deleteImageById = (req, res) => {
 
 const commentById = async (req, res) => {
   const postId = req.params.id;
+
   const postComment = {
     commentId: uuidv4(),
     user: {
-      userId: req.body.userId,
-      username: req.body.username,
+      userId: req.body.user.userId,
+      username: req.body.user.username,
+      avatar: req.body.user.avatar,
     },
     comment: req.body.comment,
     timestemp: Date.now(),
   };
 
-  await Image.findOneAndUpdate(
-    { imgId: postId },
-    { $push: { comments: postComment } }
+  
+
+  const filter = { imgId: postId };
+  let item = await Image.findOneAndUpdate(
+    filter,
+    { $push: { comments: postComment } },
+    {new: true}
   );
+  
+  // console.log(item)
+  res.status(201).send(item);
 
-  Image.findOne({ imgId: postId }, (err, item) => {
-    if (err) {
-      res.status(400).send(err);
-    }
-    res.status(201).send(item);
-  });
-
-  // res.status(201).send(updatedImage);
 };
 
 const likeById = async (req, res) => {
@@ -203,6 +213,7 @@ const likeById = async (req, res) => {
 
   res.status(201).send(updatedImage);
 };
+
 
 function findUserNextImg(postdate, userId) {
   return Image.find({ timestemp: { $gt: postdate } })
@@ -222,8 +233,10 @@ function findUserPreImg(postdate, userId) {
 
 const getUserImageById = async (req, res) => {
   const postId = req.params.id;
-
+  console.log('postid',postId);
   let item = await getimage(postId);
+
+  console.log('getuserimagebyid',item);
 
   let postdate = item.timestemp;
   let userId = item.user.userId;
@@ -285,14 +298,19 @@ function findlastimg(img_location) {
     .exec();
 }
 
-const getLocationImageById = async (req, res) => {
-  const postId = req.params.id;
+function findRandomLocImg(img_location) {
+  return Image.findOne({ location: img_location })
+  .limit(1)
+  .exec();
+}
 
-  let item = await getimage(postId);
+const getLocationImageById = async (req, res) => {
+  const img_location = req.params.id;
+
+  let item = await findRandomLocImg(img_location);
 
   let img_id = item._id;
   let img_likes = item.likes;
-  let img_location = item.location;
 
   let previous = await getPreImg(img_id, img_location);
   let next = await getNextimg(img_id, img_location);
@@ -319,7 +337,8 @@ const getLocationImageById = async (req, res) => {
     curImgObj: item,
     nextId: nextImgId,
   };
-
+  console.log("log", obj);
+  console.log("log user", obj.curImgObj.user);
   res.send(obj);
 };
 
