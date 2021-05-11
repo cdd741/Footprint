@@ -81,7 +81,7 @@ When people are looking for travel photos and experiences online, there are mast
 ### - 2.1.0 Site Map
 <p align="center">
 	<img src="https://github.com/cdd741/Footprint/blob/master/interface.png"
-        width="600" height="500">
+        width="100%">
 	<p align="center">
 </p>
 
@@ -91,7 +91,7 @@ When people are looking for travel photos and experiences online, there are mast
 ##### - Post
 <p align="center">
 	<img src="https://github.com/cdd741/Footprint/blob/master/home.png"
-        width="1280" height="500">
+        width="100%">
 	<p align="center">
 </p>
 
@@ -99,7 +99,7 @@ When people are looking for travel photos and experiences online, there are mast
 ##### - Comment
 <p align="center">
 	<img src="https://github.com/cdd741/Footprint/blob/master/comment.png"
-        width="1280" height="500">
+        width="100%">
 	<p align="center">
 </p>
 
@@ -107,7 +107,7 @@ When people are looking for travel photos and experiences online, there are mast
 #### - 2.2.2 Signin
 <p align="center">
 	<img src="https://github.com/cdd741/Footprint/blob/master/signin.png"
-        width="1280" height="500">
+        width="100%">
 	<p align="center">
 </p>
 
@@ -115,7 +115,7 @@ When people are looking for travel photos and experiences online, there are mast
 #### - 2.2.3 Signup
 <p align="center">
 	<img src="https://github.com/cdd741/Footprint/blob/master/signup.png"
-        width="1280" height="500">
+        width="100%">
 	<p align="center">
 </p>
 
@@ -123,7 +123,7 @@ When people are looking for travel photos and experiences online, there are mast
 #### - 2.2.4 Upload
 <p align="center">
 	<img src="https://github.com/cdd741/Footprint/blob/master/upload.png"
-        width="1280" height="500">
+        width="100%">
 	<p align="center">
 </p>
 
