@@ -16,7 +16,7 @@
  	* [Database Structure](https://github.com/cdd741/Footprint#--330-database-structure)
 * [PART IV: Project Road Map](https://github.com/cdd741/Footprint#part-iv-project-road-map)
 * [APPENDIX](https://github.com/cdd741/Footprint#appendix)
-	* [Packages and version](https://github.com/cdd741/Footprint/blob/main/README.md#packages-and-version)
+	* [Packages and version](https://github.com/cdd741/Footprint/blob/master/README.md#packages-and-version)
 
 ## PART I: Project Overview
 
@@ -25,7 +25,7 @@
 A photo sharing platform for photographers to share travel photos. Footprint allows users to upload art works that can be edited with descriptions and organized by geographical tagging. Posts can be shared and commented on publicly. Users can browse other users' content by tags and locations and view trending content.
 
 ### - 1.2.0 Problem
-When people are looking for travel photos and experiences online, there are mainly two places to go, social platforms or travel sites. But neither of them are easy to get an ideal result for a travel avdice. Social platforms nowadays are packed with too much information, users are easily getting distracted and lost in the social network, and information from travel sites are mainly uploaded by organizations and mostly text based. By introducing a light weight travel focusd photo sharing platform, it is providing an easier experience for users to explore nice photos and travel advices of their dream vacation.
+When people are looking for travel photos and experiences online, there are masterly two places to go, social platforms or travel sites. But neither of them are easy to get an ideal result for a travel avdice. Social platforms nowadays are packed with too much information, users are easily getting distracted and lost in the social network, and information from travel sites are masterly uploaded by organizations and mostly text based. By introducing a light weight travel focusd photo sharing platform, it is providing an easier experience for users to explore nice photos and travel advices of their dream vacation.
 
 ### - 1.3.0 User Profile
 1. Photographers: posting and sharing art works of travel locations    
@@ -80,7 +80,7 @@ When people are looking for travel photos and experiences online, there are main
 
 ### - 2.1.0 Site Map
 <p align="center">
-	<img src="https://github.com/cdd741/Footprint/blob/main/interface.png"
+	<img src="https://github.com/cdd741/Footprint/blob/master/interface.png"
         width="600" height="500">
 	<p align="center">
 </p>
@@ -90,7 +90,7 @@ When people are looking for travel photos and experiences online, there are main
 
 ##### - Post
 <p align="center">
-	<img src="https://github.com/cdd741/Footprint/blob/main/home.png"
+	<img src="https://github.com/cdd741/Footprint/blob/master/home.png"
         width="1280" height="500">
 	<p align="center">
 </p>
@@ -98,7 +98,7 @@ When people are looking for travel photos and experiences online, there are main
 
 ##### - Comment
 <p align="center">
-	<img src="https://github.com/cdd741/Footprint/blob/main/comment.png"
+	<img src="https://github.com/cdd741/Footprint/blob/master/comment.png"
         width="1280" height="500">
 	<p align="center">
 </p>
@@ -106,7 +106,7 @@ When people are looking for travel photos and experiences online, there are main
 
 #### - 2.2.2 Signin
 <p align="center">
-	<img src="https://github.com/cdd741/Footprint/blob/main/signin.png"
+	<img src="https://github.com/cdd741/Footprint/blob/master/signin.png"
         width="1280" height="500">
 	<p align="center">
 </p>
@@ -114,7 +114,7 @@ When people are looking for travel photos and experiences online, there are main
 
 #### - 2.2.3 Signup
 <p align="center">
-	<img src="https://github.com/cdd741/Footprint/blob/main/signup.png"
+	<img src="https://github.com/cdd741/Footprint/blob/master/signup.png"
         width="1280" height="500">
 	<p align="center">
 </p>
@@ -122,7 +122,7 @@ When people are looking for travel photos and experiences online, there are main
 
 #### - 2.2.4 Upload
 <p align="center">
-	<img src="https://github.com/cdd741/Footprint/blob/main/upload.png"
+	<img src="https://github.com/cdd741/Footprint/blob/master/upload.png"
         width="1280" height="500">
 	<p align="center">
 </p>
@@ -146,7 +146,7 @@ When people are looking for travel photos and experiences online, there are main
 
 ### - 3.3.0 Database Structure
 <p align="center">
-	<img src="https://github.com/cdd741/Footprint/blob/main/Untitled%20Diagram.png"
+	<img src="https://github.com/cdd741/Footprint/blob/master/Untitled%20Diagram.png"
         width="600" height="600">
 	<p align="center">
 </p>
