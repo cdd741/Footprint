@@ -26,15 +26,14 @@
 }
 
 .location-selection {
+  color: $black;
   list-style-type: none;
   text-align: left;
   padding: 4px 24px 4px 24px;
   display: flex;
-  // justify-content: space-between;
-  // flex-wrap: wrap;
+  transition: 0.3s;
   &:hover {
-    background-color: $silver;
-    color: $alabaster;
+    background-color: $mercury;
     border-left: 4px solid $black;
   }
 }
@@ -58,7 +57,7 @@
 }
 
 .main_text {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .secondary_text {

@@ -7,6 +7,9 @@ $color-white: #fff;
 
 .dropdownzone {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 
   & input {
     height: 100%;
@@ -22,6 +25,9 @@ $color-white: #fff;
       height: 100%;
     }
   }
+}
+.uploadBox-container {
+  height: 100%;
 }
 
 .uploadBox {
@@ -44,7 +50,6 @@ $color-white: #fff;
   transition: all 0.2s ease-in-out;
   appearance: none;
   -webkit-appearance: none;
-  box-sizing: border-box;
   margin: 0 0 24px 0;
   height: 100%;
 

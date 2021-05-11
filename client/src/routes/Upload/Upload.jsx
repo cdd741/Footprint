@@ -56,14 +56,7 @@ function Upload(props) {
         onSubmit={handleOnSubmit}
       >
         <div className="upload__input-container">
-          <DropZone handleFileDrop={handleFileDrop} />
-          {file && (
-            <img
-              className="upload__image"
-              src={URL.createObjectURL(file)}
-              alt="upload image"
-            />
-          )}
+          <DropZone handleFileDrop={handleFileDrop} file={file} />
         </div>
         <div className="upload__input-container">
           <label className="signinLabel" htmlFor="location">

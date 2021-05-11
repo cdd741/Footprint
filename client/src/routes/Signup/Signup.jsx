@@ -22,6 +22,7 @@ function Signin(routerProps) {
         avatar: faker.image.avatar(),
       })
       .then((res) => {
+        console.log(res.data);
         Cookies.set("login", true);
         setLoggingInfo(true);
         setUser(res.data);

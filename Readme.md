@@ -75,7 +75,7 @@ When people are looking for travel photos and experiences online, there are mast
 24. Heroku
 25. pusher
 26. Google Map Api
-:wq
+
 ## PART II: Client Side
 
 ### - 2.1.0 Site Map
@@ -130,14 +130,254 @@ When people are looking for travel photos and experiences online, there are mast
 
 ## PART III: Sever Side
 
-### - 3.1.0 End-Point Descriptions
-| EndPoints      | Response Format |  
-| :------------- | :-------------  | 
-| PART I         | March 6         |
-| PART II        | April 5         | 
-| PART III       | April 24        | 
-| PART IV        | May 2           | 
-| PART V         | May 9           | 
+### - 3.1.0 End-Point Descriptions  
+<table>
+	<tr>
+		<th>Method</th>
+		<th>EndPoints</th>
+		<th>Response Format</th>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/post</td>
+		<td><pre>{
+    "previousId": "a585d92e-a3d4-4119-a2d4-e9c4aa4cec82",
+    "curImgObj": {
+        "comments": [],
+        "_id": "609abd42b144db0306be1273",
+        "user": {
+            "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+            "username": "Daron Donnelly",
+            "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+        },
+        "location": "Forest Lake, MN, USA",
+        "description": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+        "likes": 0,
+        "imgUrl": "uploads/1620753730056-.jpg",
+        "imgId": "a10aaf64-e413-49bd-b9e3-fef5ecd8a66e",
+        "timestemp": 1620753730074,
+        "__v": 0
+    },
+    "nextId": "a0f7fa70-7638-40ba-8247-fb163002ee4a"
+}</pre></td>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/post</td>
+		<td><pre>{
+    "previousId": "a585d92e-a3d4-4119-a2d4-e9c4aa4cec82",
+    "curImgObj": {
+        "comments": [],
+        "_id": "609abd42b144db0306be1273",
+        "user": {
+            "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+            "username": "Daron Donnelly",
+            "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+        },
+        "location": "Forest Lake, MN, USA",
+        "description": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+        "likes": 0,
+        "imgUrl": "uploads/1620753730056-.jpg",
+        "imgId": "a10aaf64-e413-49bd-b9e3-fef5ecd8a66e",
+        "timestemp": 1620753730074,
+        "__v": 0
+    },
+    "nextId": "a0f7fa70-7638-40ba-8247-fb163002ee4a"
+}</pre></td>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/post/:id</td>
+		<td><pre>{
+    "previousId": "a585d92e-a3d4-4119-a2d4-e9c4aa4cec82",
+    "curImgObj": {
+        "comments": [],
+        "_id": "609abd42b144db0306be1273",
+        "user": {
+            "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+            "username": "Daron Donnelly",
+            "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+        },
+        "location": "Forest Lake, MN, USA",
+        "description": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+        "likes": 0,
+        "imgUrl": "uploads/1620753730056-.jpg",
+        "imgId": "a10aaf64-e413-49bd-b9e3-fef5ecd8a66e",
+        "timestemp": 1620753730074,
+        "__v": 0
+    },
+    "nextId": "a0f7fa70-7638-40ba-8247-fb163002ee4a"
+}</pre></td>
+	</tr>
+	<tr>
+		<td>DELETE</td>
+		<td>/post/:id</td>
+		<td><pre>{
+        "comments": [],
+        "_id": "609abd42b144db0306be1273",
+        "user": {
+            "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+            "username": "Daron Donnelly",
+            "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+        },
+        "location": "Forest Lake, MN, USA",
+        "description": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+        "likes": 0,
+        "imgUrl": "uploads/1620753730056-.jpg",
+        "imgId": "a10aaf64-e413-49bd-b9e3-fef5ecd8a66e",
+        "timestemp": 1620753730074,
+        "__v": 0
+    }</pre></td>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/post/:id/comment</td>
+		<td><pre>{
+    "comments": [
+        {
+            "commentId": "5edf3dea-06f2-4300-ad6d-562d80e63fbc",
+            "user": {
+                "userId": "50690cb6-10ee-4f0c-8712-5414517fd741",
+                "username": "Isai Lesch V",
+                "avatar": "https://cdn.fakercloud.com/avatars/maximseshuk_128.jpg"
+            },
+            "comment": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+            "timestemp": 1620729405634
+        },
+        {
+            "commentId": "bfeaf1ac-afa8-4ed6-903b-a6fc0c702791",
+            "user": {
+                "userId": "3e73a6fa-66c2-421b-86f8-75c1696fd967",
+                "username": "Cheyenne Wisoky",
+                "avatar": "https://cdn.fakercloud.com/avatars/mcflydesign_128.jpg"
+            },
+            "comment": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+            "timestemp": 1620729870773
+        },
+        {
+            "commentId": "821b088d-74c1-41f8-9b8a-462df4b5b947",
+            "user": {
+                "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+                "username": "Daron Donnelly",
+                "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+            },
+            "comment": "Nemo sit veritatis doloribus est quam placeat sit voluptates. Voluptatem quaerat autem. Non qui quasi eum eaque voluptates quis in. Ut esse et hic ipsam. Optio enim esse. Et nam vel voluptates est est eveniet vero alias nihil.\n",
+            "timestemp": 1620753507855
+        }
+    ],
+    "_id": "609a58a86862df02eb87e030",
+    "user": {
+        "userId": "5094e116-aed2-40d4-8328-c0990a03c674",
+        "username": "Jaylon Gusikowski",
+        "avatar": "https://cdn.fakercloud.com/avatars/robturlinckx_128.jpg"
+    },
+    "location": "Great Falls, MT, USA",
+    "description": "Quia natus rerum illum sit. Non maiores qui corrupti voluptas consequatur. Voluptatem saepe animi quibusdam. Accusantium reiciendis soluta autem ut voluptatum. Facere inventore corrupti voluptatem inventore quidem optio. Ea voluptatem suscipit odio ad ducimus officiis sunt. Quidem aliquid aut velit sed assumenda. Doloribus nihil enim. Aut commodi qui atque perferendis similique natus corporis occaecati. Dolorem illum architecto.",
+    "likes": 0,
+    "imgUrl": "uploads/1620727976434-.jpg",
+    "imgId": "a0f7fa70-7638-40ba-8247-fb163002ee4a",
+    "timestemp": 1620727976453,
+    "__v": 0
+}</pre></td>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/post/:id/like</td>
+		<td><pre></pre></td>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/post/user</td>
+		<td><pre>{
+    "previousId": "a585d92e-a3d4-4119-a2d4-e9c4aa4cec82",
+    "curImgObj": {
+        "comments": [],
+        "_id": "609abd42b144db0306be1273",
+        "user": {
+            "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+            "username": "Daron Donnelly",
+            "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+        },
+        "location": "Forest Lake, MN, USA",
+        "description": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+        "likes": 0,
+        "imgUrl": "uploads/1620753730056-.jpg",
+        "imgId": "a10aaf64-e413-49bd-b9e3-fef5ecd8a66e",
+        "timestemp": 1620753730074,
+        "__v": 0
+    },
+    "nextId": "a0f7fa70-7638-40ba-8247-fb163002ee4a"
+}</pre></td>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/post/location</td>
+		<td><pre>{
+    "previousId": "a585d92e-a3d4-4119-a2d4-e9c4aa4cec82",
+    "curImgObj": {
+        "comments": [],
+        "_id": "609abd42b144db0306be1273",
+        "user": {
+            "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+            "username": "Daron Donnelly",
+            "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+        },
+        "location": "Forest Lake, MN, USA",
+        "description": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+        "likes": 0,
+        "imgUrl": "uploads/1620753730056-.jpg",
+        "imgId": "a10aaf64-e413-49bd-b9e3-fef5ecd8a66e",
+        "timestemp": 1620753730074,
+        "__v": 0
+    },
+    "nextId": "a0f7fa70-7638-40ba-8247-fb163002ee4a"
+}</pre></td>
+	</tr>
+	<tr>
+		<td>GET</td>
+		<td>/user/:id</td>
+		<td><pre></pre></td>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/user/signup</td>
+		<td><pre>{
+    "userId": "11c1d1e6-c475-4019-9cbe-0dfaaacff92a",
+    "username": "Dr. Lonny Legros",
+    "email": "lonny_legros@gmail.com",
+    "bio": "Et qui aut in sint qui cum. Numquam soluta iure. Ut fugiat nisi fugit vel. Enim sint necessitatibus.",
+    "avatar": "https://cdn.fakercloud.com/avatars/nickfratter_128.jpg"
+}</pre></td>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/user/signin</td>
+		<td><pre>{
+    "userId": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+    "username": "Daron Donnelly",
+    "email": "daron.donnelly68@gmail.com",
+    "bio": "Nemo sit veritatis doloribus est quam placeat sit voluptates. Voluptatem quaerat autem. Non qui quasi eum eaque voluptates quis in. Ut esse et hic ipsam. Optio enim esse. Et nam vel voluptates est est eveniet vero alias nihil.\n",
+    "avatar": "https://cdn.fakercloud.com/avatars/mslarkina_128.jpg"
+}</pre></td>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/search</td>
+		<td><pre>{
+    "location": {
+        "Banff, AB, Canada": 1,
+        "Scotland, UK": 1,
+    },
+    "user": {
+        "Jaylon Gusikowski": "5094e116-aed2-40d4-8328-c0990a03c674",
+        "Alessia Botsford": "2ef0fd37-8411-4ed5-ac29-0f1c5f19c829",
+        "Isai Lesch V": "50690cb6-10ee-4f0c-8712-5414517fd741",
+        "Daron Donnelly": "1164a2d5-e1d3-44ec-bd8c-3ef81d9b5187",
+        "Gavin Jacobson": "ba94b1b7-881a-4387-a92f-ce9c5898c958"
+    }
+}</pre></td>
+	</tr>
+</table>
 
 ### - 3.2.0 External APIs that will be consumed
 | External API   | Documentation | 

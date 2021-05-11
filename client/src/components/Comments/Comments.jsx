@@ -89,9 +89,10 @@ function Comments({ imageId, comments, handleUpdate }) {
 
       <ul className="comments__list">
         {comments
-          .sort((a, b) => b.timestamp - a.timestamp)
+          .sort((a, b) => b.timestemp - a.timestemp)
           .map((comment) => {
-            let timePassed = getTimePassed(comment.timestamp);
+            let timePassed = getTimePassed(comment.timestemp);
+            console.log(typeof comment.timestemp);
             return (
               <li
                 className="comment"

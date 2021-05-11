@@ -25,7 +25,7 @@ $color-white: #fff;
     @include tablet {
       width: 50%;
       margin: 0 8px;
-      height: 100%;
+      min-height: 100%;
     }
   }
 
@@ -65,6 +65,8 @@ $color-white: #fff;
 
   &__image {
     width: 100%;
+    margin-top: 16px;
+    border-radius: 24px;
   }
 }
 
@@ -86,6 +88,7 @@ html {
   &--upload {
     @include tablet {
       display: flex;
+      align-items: stretch;
     }
   }
 }

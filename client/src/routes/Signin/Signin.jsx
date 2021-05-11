@@ -18,6 +18,7 @@ function Signin(routerProps) {
         password: e.target.password.value,
       })
       .then((res) => {
+        console.log(res.data);
         Cookies.set("login", true);
         setLoggingInfo(true);
         setUser(res.data);

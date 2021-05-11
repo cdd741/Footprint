@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import "./Dropzone.scss";
 
-export default function Dropzone({ handleFileDrop }) {
+export default function Dropzone({ handleFileDrop, file }) {
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
     handleFileDrop(acceptedFiles[0]);
@@ -22,6 +22,13 @@ export default function Dropzone({ handleFileDrop }) {
             Drag 'n' drop some image here, or click to select image
           </p>
         </label>
+      )}
+      {file && (
+        <img
+          className="upload__image"
+          src={URL.createObjectURL(file)}
+          alt="upload image"
+        />
       )}
     </div>
   );
