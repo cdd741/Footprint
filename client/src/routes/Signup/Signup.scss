@@ -65,7 +65,7 @@ html {
   outline: 0;
   font-size: $ruler;
   border-radius: $ruler * 20;
-  padding: $ruler;
+  padding: 16px 24px;
   background-color: $color-bg;
   text-shadow: 1px 1px 0 $color-white;
   margin-right: $ruler/2;
@@ -94,7 +94,7 @@ html {
   outline: 0;
   font-size: $ruler;
   border-radius: $ruler * 2;
-  padding: $ruler;
+  padding: 16px 24px;
   background-color: $color-bg;
   text-shadow: 1px 1px 0 $color-white;
   margin-right: $ruler/2;

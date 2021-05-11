@@ -3,6 +3,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import "./PlaceAutocomplete.scss";
 
 export default function PlacesAutocomplete() {
   const {
@@ -48,16 +49,22 @@ export default function PlacesAutocomplete() {
       } = suggestion;
 
       return (
-        <li key={place_id} onClick={handleSelect(suggestion)}>
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        <li
+          className="location-selection"
+          key={place_id}
+          onClick={handleSelect(suggestion)}
+        >
+          <p className="secondary_text">
+            <span className="main_text">{main_text}</span>, {secondary_text}
+          </p>
         </li>
       );
     });
 
   return (
-    <div ref={ref}>
+    <div className="location-input" ref={ref}>
       <input
-        className="signininput"
+        className={`signininput${status ? " expand" : ""}`}
         type="text"
         name="location"
         id="location"
@@ -68,7 +75,9 @@ export default function PlacesAutocomplete() {
         autoComplete="off"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && <ul>{renderSuggestions()}</ul>}
+      {status === "OK" && (
+        <ul className="render-suggestions">{renderSuggestions()}</ul>
+      )}
     </div>
   );
 }

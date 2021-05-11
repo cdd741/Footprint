@@ -1,24 +1,69 @@
+@use '../../styles/partials/variables' as *;
 .signininput {
-  font-family: "Montserrat", sans-serif;
+  // font-family: "Montserrat", sans-serif;
   letter-spacing: -0.2px;
-  font-size: $ruler;
+  // font-size: $ruler;
   border: 0;
   outline: 0;
-  font-size: $ruler;
-  border-radius: $ruler * 20;
-  padding: $ruler;
-  background-color: $color-bg;
-  text-shadow: 1px 1px 0 $color-white;
-  margin-right: $ruler/2;
-  box-shadow: inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+  // font-size: $ruler;
+  // border-radius: $ruler * 20;
+  // padding: $ruler;
+  // background-color: $color-bg;
+  // text-shadow: 1px 1px 0 $color-white;
+  // margin-right: $ruler/2;
+  // box-shadow: inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   appearance: none;
   -webkit-appearance: none;
+  border-radius: 24px;
 
   &:focus {
-    box-shadow: inset 1px 1px 2px $color-shadow,
-      inset -1px -1px 2px $color-white;
+    // box-shadow: inset 1px 1px 2px $color-shadow,
+    //   inset -1px -1px 2px $color-white;
   }
+}
+
+.location-selection {
+  list-style-type: none;
+  text-align: left;
+  padding: 4px 24px 4px 24px;
+  display: flex;
+  // justify-content: space-between;
+  // flex-wrap: wrap;
+  &:hover {
+    background-color: $silver;
+    color: $alabaster;
+    border-left: 4px solid $black;
+  }
+}
+
+.location-input {
+  position: relative;
+}
+
+.render-suggestions {
+  position: absolute;
+  background-color: white;
+  margin: 0;
+  width: 100%;
+  padding: 0 0 0 0;
+  overflow: hidden;
+  border-top: 1px solid $alabaster;
+  border-radius: 0 0 32px 32px;
+  box-shadow: inset 1px 1px 2px #a1a6b6;
+  border: 0;
+  outline: 0;
+}
+
+.main_text {
+  font-weight: 600;
+}
+
+.secondary_text {
+}
+
+.expand {
+  border-radius: 24px 24px 0 0;
 }
